@@ -31,9 +31,26 @@ jobs:
           fetch-depth: 1
 
       - name: Project Setup
-        run: | 
+        run: |
           npm run setup
           npm run dev:daemon
+
+      - name: Create MCP Config
+        run: |
+          cat > /tmp/mcp-config.json << 'EOF'
+          {
+            "mcpServers": {
+              "playwright": {
+                "command": "npx",
+                "args": [
+                  "@playwright/mcp@latest",
+                  "--allowed-origins",
+                  "localhost:3000;cdn.tailwindcss.com;esm.sh"
+                ]
+              }
+            }
+          }
+          EOF
 
       - name: Run Claude Code
         id: claude
@@ -55,18 +72,7 @@ jobs:
 
           # Pass MCP config and allowed tools via claude_args
           claude_args: |
-            --allowed-tools "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__*"
-            --mcp-config '{
-              "mcpServers": {
-                "playwright": {
-                  "command": "npx",
-                  "args": [
-                    "@playwright/mcp@latest",
-                    "--allowed-origins",
-                    "localhost:3000;cdn.tailwindcss.com;esm.sh"
-                  ]
-                }
-              }
-            }'
+            --mcp-config /tmp/mcp-config.json
+            --allowedTools "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__*"
 
 
