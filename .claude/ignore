@@ -1,0 +1,53 @@
+# Claude Code ignore file
+# Files and directories listed here will be excluded from Claude's context
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.*
+.yarn/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Database
+prisma/dev.db
+prisma/dev.db-journal
+
+# Generated files
+src/generated/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Logs
+*.log
+logs.txt
+
+# Coverage reports
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large media files
+*.mp4
+*.mov
+*.avi
+*.zip
+*.tar.gz
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
