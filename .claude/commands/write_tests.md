@@ -1,4 +1,8 @@
-Write comprehensive tests for: $ARGUMENTS
+---
+description: Write comprehensive tests for: $ARGUMENTS
+---
+
+# Write comprehensive tests for: $ARGUMENTS
 
 Testing conventions:
 
